@@ -1,0 +1,86 @@
+### Balderdash API walkthrough (VS Code REST Client / IntelliJ HTTP client)
+### Run `pnpm dev` first. Cookies are kept by the client between requests, so
+### use separate "cookie jars" (or curl -c/-b) for the host and each player.
+@base = http://localhost:3000
+@code = KQWZ
+
+### 1. Host creates a game (sets bd_<CODE> host cookie). Copy the code into @code.
+POST {{base}}/api/games
+Content-Type: application/json
+
+{
+  "words": [
+    { "word": "Snollygoster", "definition": "A shrewd, unprincipled person, especially a politician." },
+    { "word": "Bumfuzzle", "definition": "To confuse or fluster." }
+  ],
+  "settings": { "correctGuessPoints": 2 }
+}
+
+### 2. Public snapshot
+GET {{base}}/api/games/{{code}}
+
+### 3. A player joins (sets a player cookie in *this* client's jar)
+POST {{base}}/api/games/{{code}}/join
+Content-Type: application/json
+
+{ "name": "Ann" }
+
+### 4. Player private view
+GET {{base}}/api/games/{{code}}/me
+
+### 5. Host view (needs the host cookie)
+GET {{base}}/api/games/{{code}}/host
+
+### 6. Host starts (needs 2+ players)
+POST {{base}}/api/games/{{code}}/actions
+Content-Type: application/json
+
+{ "type": "START" }
+
+### 7. Player submits
+POST {{base}}/api/games/{{code}}/actions
+Content-Type: application/json
+
+{ "type": "SUBMIT", "text": "A kind of hat worn by canal workers." }
+
+### 8. Host: stop waiting -> REVIEW, then open voting
+POST {{base}}/api/games/{{code}}/actions
+Content-Type: application/json
+
+{ "type": "STOP_WAITING" }
+
+###
+POST {{base}}/api/games/{{code}}/actions
+Content-Type: application/json
+
+{ "type": "OPEN_VOTING" }
+
+### 9. Player votes (take an option id from the snapshot)
+POST {{base}}/api/games/{{code}}/actions
+Content-Type: application/json
+
+{ "type": "VOTE", "optionId": "o_xxxx" }
+
+### 10. Host: reveal, scoreboard, next
+POST {{base}}/api/games/{{code}}/actions
+Content-Type: application/json
+
+{ "type": "REVEAL_NOW" }
+
+###
+POST {{base}}/api/games/{{code}}/actions
+Content-Type: application/json
+
+{ "type": "SHOW_SCOREBOARD" }
+
+###
+POST {{base}}/api/games/{{code}}/actions
+Content-Type: application/json
+
+{ "type": "NEXT_ROUND" }
+
+### Heartbeat
+POST {{base}}/api/games/{{code}}/actions
+Content-Type: application/json
+
+{ "type": "HEARTBEAT" }

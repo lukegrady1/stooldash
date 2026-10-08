@@ -12,7 +12,6 @@ import {
   realOption,
   submitAll,
   writing3,
-  voting3,
 } from './helpers';
 import { LIMITS } from '../types';
 
