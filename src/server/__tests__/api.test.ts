@@ -93,6 +93,7 @@ async function action(c: Client, code: string, body: unknown) {
 beforeEach(() => {
   setStore(new MemoryStore());
   resetRateLimits();
+  process.env.BD_RATE_LIMIT = 'on';
 });
 
 describe('API: create / join / snapshot', () => {

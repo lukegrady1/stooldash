@@ -45,7 +45,7 @@ export function Scoreboard({
                   className="ml-2 text-hi drop-shadow-[0_1px_0_rgb(0_0_0/0.25)]"
                   aria-label="leader"
                 >
-                  ★
+                  {'★\uFE0E'}
                 </span>
               ) : null}
             </span>

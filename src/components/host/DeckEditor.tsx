@@ -20,6 +20,8 @@ interface StoredDeck {
 }
 
 const emptyRow = (): DeckRow => ({ id: newRowId(), word: '', definition: '' });
+// The first render happens on the server too, so the initial row needs a stable id.
+const INITIAL_ROWS: DeckRow[] = [{ id: 'r_first', word: '', definition: '' }];
 
 function rowsFrom(entries: readonly WordEntry[]): DeckRow[] {
   return entries.map((e) => ({ id: newRowId(), ...e }));
@@ -27,7 +29,7 @@ function rowsFrom(entries: readonly WordEntry[]): DeckRow[] {
 
 export function DeckEditor() {
   const router = useRouter();
-  const [rows, setRows] = useState<DeckRow[]>([emptyRow()]);
+  const [rows, setRows] = useState<DeckRow[]>(INITIAL_ROWS);
   const [points, setPoints] = useState<CorrectGuessPoints>(2);
   const [loaded, setLoaded] = useState(false);
   const [pasteOpen, setPasteOpen] = useState(false);

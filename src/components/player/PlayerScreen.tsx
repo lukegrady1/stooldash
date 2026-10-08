@@ -259,7 +259,7 @@ function Writing({
         <>
           <IndexCard
             text={me.mySubmission ?? ''}
-            corner={<span className="font-bold text-good">✓ Submitted</span>}
+            corner={<span className="font-bold text-card-good">✓ Submitted</span>}
             ariaLabel="Your submitted definition"
           />
           <div className="flex items-center justify-between gap-3">
@@ -345,7 +345,9 @@ function Voting({
           totalRounds={snapshot.totalRounds}
           size="sm"
         />
-        <p className="text-2xl font-extrabold text-good">★ You knew the real definition.</p>
+        <p className="text-2xl font-extrabold text-good">
+          {'★\uFE0E'} You knew the real definition.
+        </p>
         <p className="text-muted">That&rsquo;s 3 points. Sit back while the others guess.</p>
       </div>
     );
@@ -380,7 +382,7 @@ function Voting({
                   mine ? (
                     <span>Yours, can&rsquo;t vote for it</span>
                   ) : picked ? (
-                    <span className="font-bold text-brand">Your vote</span>
+                    <span className="font-bold text-card-brand">Your vote</span>
                   ) : null
                 }
               />

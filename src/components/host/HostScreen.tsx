@@ -283,7 +283,7 @@ function Review({ view, run }: { view: HostView; run: (a: ClientAction) => void 
       <div className="mx-auto w-full max-w-2xl">
         <IndexCard
           text={view.currentDefinition ?? ''}
-          corner={<span className="font-bold text-warn">Only you see this</span>}
+          corner={<span className="font-bold text-card-warn">Only you see this</span>}
           ariaLabel="The real definition, visible only to the host"
         />
       </div>
@@ -416,7 +416,7 @@ function Reveal({ snapshot, run }: { snapshot: PublicSnapshot; run: (a: ClientAc
       />
       {knew.length > 0 ? (
         <p className="text-center text-lg font-semibold text-good">
-          ★ {knew.join(', ')} knew it. +3 {knew.length === 1 ? '' : 'each'}
+          {'★\uFE0E'} {knew.join(', ')} knew it. +3 {knew.length === 1 ? '' : 'each'}
         </p>
       ) : null}
       <div className="mx-auto w-full max-w-2xl">

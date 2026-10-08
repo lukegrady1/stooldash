@@ -13,6 +13,11 @@
   --warn: #b4361f;
   --card: #fffdf6;
   --card-ink: #24263a;
+  /* Fixed inks for text that sits on a paper card, in both themes. */
+  --card-muted: #666b8c;
+  --card-good: #1d7a52;
+  --card-brand: #2f3fb0;
+  --card-warn: #b4361f;
   --rule-red: #e4483b;
   --rule-blue: #b5cbeb;
   --hi: #ffe24a;
@@ -62,6 +67,10 @@
   --color-warn: var(--warn);
   --color-card: var(--card);
   --color-card-ink: var(--card-ink);
+  --color-card-muted: var(--card-muted);
+  --color-card-good: var(--card-good);
+  --color-card-brand: var(--card-brand);
+  --color-card-warn: var(--card-warn);
   --color-rule-red: var(--rule-red);
   --color-rule-blue: var(--rule-blue);
   --color-hi: var(--hi);
@@ -172,7 +181,7 @@ textarea {
   font-weight: 800;
   font-size: 13px;
   letter-spacing: 0.04em;
-  color: var(--muted);
+  color: var(--card-muted);
 }
 
 .index-card__corner {
@@ -182,7 +191,7 @@ textarea {
   font-family: var(--font-ui);
   font-weight: 600;
   font-size: 12px;
-  color: var(--muted);
+  color: var(--card-muted);
 }
 
 .highlight {

@@ -27,8 +27,17 @@ function buckets(): Map<string, Bucket> {
   return globalThis.__bdBuckets;
 }
 
+/**
+ * DECISION: limits are enforced in production, or when BD_RATE_LIMIT=on. Local dev
+ * and the e2e suite create far more than 10 games an hour from one IP.
+ */
+export function rateLimitEnabled(): boolean {
+  return process.env.NODE_ENV === 'production' || process.env.BD_RATE_LIMIT === 'on';
+}
+
 /** Returns true when the request is allowed. */
 export function allow(rule: RateLimitRule, key: string, now = Date.now()): boolean {
+  if (!rateLimitEnabled()) return true;
   const map = buckets();
   const b = map.get(key) ?? { tokens: rule.capacity, updatedAt: now };
   const refilled = Math.min(rule.capacity, b.tokens + (now - b.updatedAt) * rule.refillPerMs);

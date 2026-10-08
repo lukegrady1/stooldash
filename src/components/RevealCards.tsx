@@ -65,20 +65,23 @@ export function RevealCards({
               letter={o.letter}
               highlight={isReal}
               ariaLabel={label}
-              corner={isReal ? <span className="font-bold text-good">Real definition</span> : null}
+              corner={
+                isReal ? <span className="font-bold text-card-good">Real definition</span> : null
+              }
               footer={
                 isReal ? (
-                  <p className="text-muted">
+                  <p className="text-card-muted">
                     {voters.length ? (
                       <>
-                        Found by <span className="font-semibold text-good">{nameList(voters)}</span>
+                        Found by{' '}
+                        <span className="font-semibold text-card-good">{nameList(voters)}</span>
                       </>
                     ) : (
                       'Nobody found it'
                     )}
                   </p>
                 ) : (
-                  <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-muted">
+                  <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-card-muted">
                     <span>
                       Written by{' '}
                       <span className="font-semibold text-card-ink">

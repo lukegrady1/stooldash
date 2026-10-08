@@ -74,7 +74,7 @@ export async function readScoreboard(page: Page): Promise<Array<[string, number]
   const out: Array<[string, number]> = [];
   for (let i = 0; i < count; i++) {
     const spans = rows.nth(i).locator(':scope > span');
-    const name = (await spans.nth(1).innerText()).replace('★', '').trim();
+    const name = (await spans.nth(1).innerText()).replace(/★\uFE0E?/g, '').trim();
     const score = Number(await spans.nth(3).innerText());
     out.push([name, score]);
   }

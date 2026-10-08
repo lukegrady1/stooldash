@@ -36,7 +36,7 @@ export function StatusChips({ players, done, highlightId, onKick, className }: S
             title={p.active ? undefined : 'Away'}
           >
             <span aria-hidden className="w-3 text-center">
-              {knewIt ? '★' : isDone ? '✓' : ''}
+              {knewIt ? '★\uFE0E' : isDone ? '✓' : ''}
             </span>
             <span className="max-w-[9rem] truncate">{p.name}</span>
             {onKick ? (
