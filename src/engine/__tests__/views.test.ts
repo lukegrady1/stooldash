@@ -210,6 +210,8 @@ describe('toHostView', () => {
       },
     ]);
     expect(h.phase).toBe('REVIEW');
+    expect(h.marked).toEqual(['p3']);
+    expect(toHostView(states.LOBBY, { now: T0 }).marked).toEqual([]);
   });
   it('flags duplicates (by normalized text) against the first submitter', () => {
     let s = writing3();

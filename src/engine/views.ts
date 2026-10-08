@@ -130,5 +130,6 @@ export function toHostView(s: GameState, ctx: { now: number }): HostView {
     words: s.words.map((w) => ({ ...w })),
     currentDefinition: word?.definition ?? null,
     submissions,
+    marked: round ? [...round.marked] : [],
   };
 }

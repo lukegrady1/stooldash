@@ -246,7 +246,6 @@ export class SupabaseStore implements Store {
 // ---------------------------------------------------------------------------
 
 declare global {
-   
   var __bdStore: Store | undefined;
 }
 

@@ -111,6 +111,8 @@ export interface HostView extends PublicSnapshot {
   words: WordEntry[];
   currentDefinition: string | null;
   submissions: HostSubmission[];
+  /** Currently marked ("knew it") players. Host-only so REVIEW can show the pre-ticks. */
+  marked: string[];
 }
 
 /** Limits shared by the engine and the API validators. */

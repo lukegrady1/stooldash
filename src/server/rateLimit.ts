@@ -19,7 +19,6 @@ export const RULES = {
 } satisfies Record<string, RateLimitRule>;
 
 declare global {
-   
   var __bdBuckets: Map<string, Bucket> | undefined;
 }
 
